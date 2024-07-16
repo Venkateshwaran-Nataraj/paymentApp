@@ -1,0 +1,68 @@
+{
+  "name": "payment_request",
+  "version": "1.0.0",
+  "size": {
+    "width": 1,
+    "height": 1
+  },
+  "mapping": [],
+  "collections": [
+    {
+      "name": "PaymentRequestDb",
+      "schema": {"columns": 
+            [{"name": "requested_by", "type": "STRING"}, 
+              {"name": "requested_to", "type": "STRING"},
+              {"name": "contact_details", "type": "STRING"}, 
+              {"name": "request_details", "type": "STRING"}            
+                      
+            ]
+        },
+      "syncEnabled": true
+    },
+    {
+      "name": "PaymentRequestDb"
+    }
+  ],
+
+
+  "workflowMapping": [
+    {
+      "alias": "workflow1",
+      "modelId": null,
+      "version": null,
+      "parameters": [
+        {
+          "name": "id",
+          "aliasedName": "person",
+          "type": "person",
+          "list": false,
+          "children": []
+        },
+        {
+          "name": "body",
+          "aliasedName": "body",
+          "type": "text",
+          "list": false,
+          "children": []
+        },
+      
+        {
+          "name": "subject",
+          "aliasedName": "subject",
+          "type": "text",
+          "list": false,
+          "children": []
+        }
+
+        
+
+       
+      ]
+    }
+  
+  ],
+
+  "fileName": "manifest.json",
+  "id": "df54659a-b6ca-458d-b5ed-b6644faa08f5",
+  "proxyId":"f182d59f-3cef-4282-9070-52fbaecb5a9f"
+}

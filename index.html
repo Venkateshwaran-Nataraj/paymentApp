@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="app.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      
+      <script src="app.js"></script>
+
+
+
+
+
+
+
+    <style>
+
+#formattedDue{
+  display: none;
+}
+
+      .fon {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 600;
+        font-style: normal;
+      }
+      
+      .bor{
+          border-radius: 5px;
+      }
+
+      #av{
+  border-radius: 50%;
+    margin-left: -20px;
+        margin-right: 10px;
+        margin-top: -27px
+  
+}
+
+#mail{
+  visibility: hidden;
+}
+
+#sendVerfiy,#valid{
+  visibility: hidden;
+}
+
+      </style>
+
+
+  </head>
+  <body class="bg-[#ADBBE0] p-8  rounded-lg">
+   <div id="avimg"> 
+      
+      
+    
+       
+   
+  </div>
+  <!-- <div  ><h1 id="user">payment_request</h1> </div> -->
+
+
+    <div id="main container " class="flex flex-2 justify-center -mt-5">
+
+      <div class=" max-w-lg mt-6 bg-white p-6 rounded-lg shadow-md border-2 border-red-100 " style="width: 100%;">
+      
+        <form id="form"  >
+        <div id="pay" class=" p-8 mt-5 rounded-lg"> 
+           <div class="mb-4" >
+            <label for="sender" class="block text-sm font-medium text-gray-700 mb-1 fon"  >Send Payment Request To</label>
+            <select id="sender" name="sender" class="mt-1 pl-2 py-1 block w-full border border-gray-300  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor py-1 cursor-context-menu" style="width: 395px;" required onchange=" change()">
+              <option value="" >Select</option>
+             
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700  fon">Name</label>
+            <input type="text" id="name" class="mt-1 pl-2 py-1 block w-full border border-gray-300  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" readonly >
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700 fon">Email</label>
+            <input type="email" id="email" class="mt-1 pl-2 py-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" readonly>
+          </div>
+          <h2 class="text-xl font-semibold mb-4 fon text-center underline decoration-sky-900 mt-8">Request Details</h2>
+          <div class="mb-4">
+            <label for="amount" class="block text-sm font-medium text-gray-700 fon -mt-2">Amount</label>
+            <div class="flex items-center">
+              <select id="currency" class="mt-1 mr-1 py-1 pl-2 block  border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" >
+                
+                <option value="usd" selected>$</option>
+                <option value="inr">₹</option>
+              </select>
+              <input id="amount" class="mt-1 py-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" type="text" placeholder="0.00" oninput="format()" >
+            </div>
+
+            <!-- <input type="number" id="amount" class="mt-1 py-1  pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor"> -->
+          </div>
+          <div class="mb-4">
+            <label for="due" class="block text-sm font-medium text-gray-700 fon">Due</label>
+            <input type="date" id="due" class="mt-1 py-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor">
+          </div>
+          <div class="mb-4" id="formatdue">
+            <!-- <label for="formattedDue" class="block text-sm font-medium text-gray-700 fon">Formatted Due Date</label> -->
+            <input type="text" id="formattedDue" class="mt-1 py-1 pl-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" readonly>
+          </div>
+          <div class="mb-4">
+            <label for="company" class="block text-sm font-medium text-gray-700 fon">Company Name to Show on Request</label>
+            <select id="company" class="mt-1 pl-2 py-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor">
+              <option value="">Select</option>
+              <option value="Domo" class="hover:bg-violet-600">DOMO</option>
+              <option value="GWC">GWC</option>
+            </select>
+          </div>
+          <div class="mb-4">
+            <label for="destination" class="block text-sm font-medium text-gray-700 fon">Destination Account</label>
+            <select id="destination" class="mt-1 pl-2 py-1  block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bor" >
+              <option value="">Select</option>
+              <option>1234567890</option>
+              <option>0987654321</option>
+            </select>
+          </div>
+          <div class=" flex gap-2 text-center justify-center">
+            <!-- <button id="reqbtn"  class="px-4 py-2 mt-6 border border-gray-300 rounded-md shadow-sm 
+            hover:bg-red-400 bor" onclick="request()" > Request Payment</button> -->
+        <!-- <input type="reset" value="Reset" class="px-4 py-2 mt-6 border border-gray-300 rounded-md shadow-sm 
+        hover:bg-red-400 bor" onclick="reset()" > -->
+        <!-- <input type="submit" value="send" class="px-4 py-2 mt-6 border border-gray-300 rounded-md shadow-sm hover:bg-red-400 bor" onclick="sendMail()"> -->
+          <!-- <button class="px-4 py-2 mt-6 border border-gray-300 rounded-md shadow-sm 
+          hover:bg-red-400 bor" onclick="sendMail()">Submit</button> -->
+      
+          <button id="res" class="px-4 py-2 mt-1 -ml-[100px]   border border-gray-300 rounded-md shadow-sm 
+          hover:bg-red-400 bor" >Reset</button>
+      </div>
+        </form>
+    
+    
+    </div>
+    <div class="flex gap-2  -mt-[94px] justify-center">
+    <!-- <input type="reset" value="Reset" class="px-4 py-2 mt-1  border border-gray-300 rounded-md shadow-sm 
+    hover:bg-red-400 bor" onclick="reset()" > -->
+    <!-- <button id="res" class="px-4 py-2 mt-1  border border-gray-300 rounded-md shadow-sm 
+    hover:bg-red-400 bor" >Reset</button> -->
+    <button class="px-4 py-2 -mt-[94px]  mt-1 ml-[100px] border border-gray-300 rounded-md shadow-sm 
+    hover:bg-red-400 bor" onclick=" request()">Preview</button>
+  </div>
+  </div>
+
+
+ 
+    
+    <div id="paypic" class=" flex  rounded-lg w-1/3  mt-6 -ml-[6px]"style="width:500px">
+        <img src="payic.png" alt="paymentPicture" width="500px">
+
+
+   
+        <!-- //mail -->
+      <div id="mail" class="border-2 w-[500px]  bg-gray-200 -ml-96  h-screen border-gray-300 rounded-lg"> 
+        <!-- <div id="ma"  class="border-2 bg-red-400  border-gray-300 h-screen border-gray-300" > -->
+        
+       
+    <!-- <div class="max-w-lg mx-auto border-2 border-blue-400  px-6 -pt-[90px] "> -->
+      <br>
+    <div  class="m-2 w-[600px] pl-10" > 
+  <div> <p id="popup"></p>  <!-- <h2>To: <span id="to" ></span></h2>
+     
+        <h2>Sub: <span id="sub"></span></h2> <br>
+    
+          Hi name,
+          
+          <br><br>
+           
+        <span>  GWC requestor name,requested 100 $ payment</span>
+          <br> <br>
+          you need make a payment before <span class="underline underline-offset-8 font-bold">sep/20/2023</span>
+          <br> <br>
+          Thanks,<br>
+          Requestor Name
+          <button class="border-2 border-blue-400 bg-violet-600 ml-50 -mt-[380px] " type="submit" id="send" onclick="sendMail()">Send</button>
+        
+        <br>
+    -->
+  </p>
+    <button class="text-white px-4 py-2 mt-4 ml-[30%]  border border-gray-300 rounded-md shadow-sm bg-blue-600
+    hover:bg-red-400 bor" onclick=" sendMail()">Send</button>
+  </div> 
+<br>
+<!-- </div>  -->
+   
+  <!-- </div> -->
+ 
+        
+     </div>
+     <div >  <h2  id="sendVerfiy" class="text-center ml-[10px] -mt-[365px] w-[400px] border-2 rounded-lg bg-blue-600 text-white " onclick="clr()"> </h2><br></div>
+     </div>
+    <div>
+     <h2  id="valid" class="text-center  -ml-[800px] mt-[200px] w-56  border-2 rounded-lg bg-red-400 text-white " onclick="clr()"></h2></div>
+    </div>
+
+   
+ 
+
+      </div>
+    
+      
+      
+
+
+
+
+
+
+
+
+
+    <!-- domo.js optional utils -->
+    <script src="https://unpkg.com/ryuu.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
